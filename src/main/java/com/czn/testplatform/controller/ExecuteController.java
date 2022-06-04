@@ -19,9 +19,10 @@ public class ExecuteController {
     @GetMapping("execute")
     public void executeTest(Long interfaceId){
         LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-        params.put("java.lang.String", "张三");
-        params.put("java.lang.Long", 1L);
-        params.put("java.lang.Integer", 12);
+        params.put("name", "张三");
+        params.put("id", 1L);
+        params.put("age", 12);
+
 
         dubboGenericService.execute(interfaceId,params);
     }

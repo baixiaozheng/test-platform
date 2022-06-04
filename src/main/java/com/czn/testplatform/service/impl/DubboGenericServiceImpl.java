@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.rpc.service.GenericService;
+import com.alibaba.fastjson.JSONObject;
 import com.czn.testplatform.entity.Interface;
 import com.czn.testplatform.repository.InterfaceRepository;
 import com.czn.testplatform.service.DubboGenericService;
@@ -49,13 +50,13 @@ public class DubboGenericServiceImpl implements DubboGenericService {
                 paramValues = new Object[params.size()];
                 int i = 0;
                 for (Map.Entry<String, Object> entry : params.entrySet()) {
-                    paramTypes[i] = entry.getKey();
+                    paramTypes[i] = entry.getValue().getClass().getTypeName();
                     paramValues[i] = entry.getValue();
                     i++;
                 }
             }
             Object result = genericService.$invoke(iface.getMethodName(), paramTypes, paramValues);
-            System.out.println(result);
+            System.out.println(JSONObject.toJSONString(result));
             reference.destroy();//这里一定要用，否则dubbo会一直连接，没几十次调用系统就会挂掉
 
         }
