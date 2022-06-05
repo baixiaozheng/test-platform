@@ -3,9 +3,20 @@ server:
 spring:
   application:
     name: test-platform
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+  web:
+    resources:
+      static-locations: classpath:/static/
+  mvc:
+    static-path-pattern: /static/**
+  main:
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/test-platform?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/test-platform?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: rootroot
     type: com.alibaba.druid.pool.DruidDataSource

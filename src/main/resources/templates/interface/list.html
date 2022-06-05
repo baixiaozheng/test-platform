@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Responsive_table</title>
+    <base th:href="@{/}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- bootstrap-css -->
+    <link rel="stylesheet" th:href="@{static/css/bootstrap.min.css}" >
+<!-- //bootstrap-css -->
+<!-- Custom CSS -->
+    <link th:href="@{static/css/style.css}" rel='stylesheet' type='text/css' />
+    <link th:href="@{static/css/style-responsive.css}" rel="stylesheet"/>
+<!-- font CSS -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- font-awesome icons -->
+    <link rel="stylesheet" th:href="@{static/css/font.css}" type="text/css"/>
+    <link th:href="@{static/css/font-awesome.css}" rel="stylesheet">
+<!-- //font-awesome icons -->
+<script th:src="@{static/js/jquery2.0.3.min.js}"></script>
+</head>
+<body>
+<section id="container">
+<!--header start-->
+<header class="header fixed-top clearfix">
+<!--logo start-->
+<div class="brand">
+
+    <a th:href="@{/toIndex}" class="logo">
+        VISITORS
+    </a>
+    <div class="sidebar-toggle-box">
+        <div class="fa fa-bars"></div>
+    </div>
+</div>
+<!--logo end-->
+
+<div class="nav notify-row" id="top_menu">
+    <!--  notification start -->
+    <ul class="nav top-menu">
+        <!-- settings start -->
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="fa fa-tasks"></i>
+                <span class="badge bg-success">8</span>
+            </a>
+            <ul class="dropdown-menu extended tasks-bar">
+                <li>
+                    <p class="">You have 8 pending tasks</p>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="task-info clearfix">
+                            <div class="desc pull-left">
+                                <h5>Target Sell</h5>
+                                <p>25% , Deadline  12 June’13</p>
+                            </div>
+                                    <span class="notification-pie-chart pull-right" data-percent="45">
+                            <span class="percent"></span>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="task-info clearfix">
+                            <div class="desc pull-left">
+                                <h5>Product Delivery</h5>
+                                <p>45% , Deadline  12 June’13</p>
+                            </div>
+                                    <span class="notification-pie-chart pull-right" data-percent="78">
+                            <span class="percent"></span>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="task-info clearfix">
+                            <div class="desc pull-left">
+                                <h5>Payment collection</h5>
+                                <p>87% , Deadline  12 June’13</p>
+                            </div>
+                                    <span class="notification-pie-chart pull-right" data-percent="60">
+                            <span class="percent"></span>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="task-info clearfix">
+                            <div class="desc pull-left">
+                                <h5>Target Sell</h5>
+                                <p>33% , Deadline  12 June’13</p>
+                            </div>
+                                    <span class="notification-pie-chart pull-right" data-percent="90">
+                            <span class="percent"></span>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="external">
+                    <a href="#">See All Tasks</a>
+                </li>
+            </ul>
+        </li>
+        <!-- settings end -->
+        <!-- inbox dropdown start-->
+        <li id="header_inbox_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="fa fa-envelope-o"></i>
+                <span class="badge bg-important">4</span>
+            </a>
+            <ul class="dropdown-menu extended inbox">
+                <li>
+                    <p class="red">You have 4 Mails</p>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="photo"><img alt="avatar" src="images/3.png"></span>
+                                <span class="subject">
+                                <span class="from">Jonathan Smith</span>
+                                <span class="time">Just now</span>
+                                </span>
+                                <span class="message">
+                                    Hello, this is an example msg.
+                                </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="photo"><img alt="avatar" src="images/1.png"></span>
+                                <span class="subject">
+                                <span class="from">Jane Doe</span>
+                                <span class="time">2 min ago</span>
+                                </span>
+                                <span class="message">
+                                    Nice admin template
+                                </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="photo"><img alt="avatar" src="images/3.png"></span>
+                                <span class="subject">
+                                <span class="from">Tasi sam</span>
+                                <span class="time">2 days ago</span>
+                                </span>
+                                <span class="message">
+                                    This is an example msg.
+                                </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="photo"><img alt="avatar" src="images/2.png"></span>
+                                <span class="subject">
+                                <span class="from">Mr. Perfect</span>
+                                <span class="time">2 hour ago</span>
+                                </span>
+                                <span class="message">
+                                    Hi there, its a test
+                                </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">See all messages</a>
+                </li>
+            </ul>
+        </li>
+        <!-- inbox dropdown end -->
+        <!-- notification dropdown start-->
+        <li id="header_notification_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                <i class="fa fa-bell-o"></i>
+                <span class="badge bg-warning">3</span>
+            </a>
+            <ul class="dropdown-menu extended notification">
+                <li>
+                    <p>Notifications</p>
+                </li>
+                <li>
+                    <div class="alert alert-info clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #1 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="alert alert-danger clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #2 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="alert alert-success clearfix">
+                        <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                        <div class="noti-info">
+                            <a href="#"> Server #3 overloaded.</a>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </li>
+        <!-- notification dropdown end -->
+    </ul>
+    <!--  notification end -->
+</div>
+<div class="top-nav clearfix">
+    <!--search & user info start-->
+    <ul class="nav pull-right top-menu">
+        <li>
+            <input type="text" class="form-control search" placeholder=" Search">
+        </li>
+        <!-- user login dropdown start-->
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img alt="" src="images/2.png">
+                <span class="username">John Doe</span>
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu extended logout">
+                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+            </ul>
+        </li>
+        <!-- user login dropdown end -->
+       
+    </ul>
+    <!--search & user info end-->
+</div>
+</header>
+<!--header end-->
+<!--sidebar start-->
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a th:href="@{/toIndex}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                
+                <li class="sub-menu">
+                    <a class="active" href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>接口管理</span>
+                    </a>
+                    <ul class="sub">
+						<li><a class="active" th:href="@{/admin/interface/list}">接口列表</a></li>
+						<li><a href="glyphicon.html">项目列表</a></li>
+                        <li><a href="grids.html">Grids</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>            </div>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->
+<!--main content start-->
+<section id="main-content">
+	<section class="wrapper">
+        <a href="javascript:void(0)" onclick="toAdd()" data-toggle="modal" class="btn btn-success">
+            新增接口
+        </a>
+		<div class="table-agile-info">
+
+ <div class="panel panel-default">
+    <div class="panel-heading">
+     接口列表
+    </div>
+    <div>
+      <table class="table" ui-jq="footable" ui-options='{
+        "paging": {
+          "enabled": true
+        },
+        "filtering": {
+          "enabled": true
+        },
+        "sorting": {
+          "enabled": true
+        }}'>
+        <thead>
+          <tr>
+            <th data-breakpoints="xs">ID</th>
+            <th>接口名</th>
+            <th>提交类型</th>
+            <th data-breakpoints="xs">接口类型</th>
+           
+            <th data-breakpoints="xs sm md" data-title="DOB">方法名</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="iface : ${interfaces}">
+            <th scope="row" th:text="${iface.id}"></th>
+            <td th:text="${iface.interfaceName}"></td>
+            <td th:text="${iface.methodType}"></td>
+            <td th:text="${iface.interfaceType}"></td>
+            <td>
+                <input type="button" class="btn btn-info" th:onclick="|getAudit(${iface.id})|" th:value="审核">
+            </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+            <!--  分页控件 -->
+            <div class="modal-footer no-margin-top">
+                <ul class="pagination pull-right no-margin">
+                    <!-- 首页 -->
+                    <li>
+                        <a th:href="'/admin/interface/list?pageNum=0'">首页</a>
+                    </li>
+                    <!-- 上一页 -->
+                    <li th:if="${interfaces.hasPrevious()}">
+                        <a th:href="'/admin/interface/list?pageNum=' + ${interfaces.previousPageable().getPageNumber()}"
+                           th:text="上一页"></a>
+                    </li>
+                    <!-- 中间页 -->
+                    <li th:each="pageNum:${#numbers.sequence(0, interfaces.getTotalPages() - 1)}">
+                        <a th:href="'/admin/interface/list?pageNum=' + ${pageNum}"
+                           th:text="${pageNum + 1}"
+                           th:if="${pageNum ne interfaces.pageable.getPageNumber()}"></a>
+                        <a th:href="'/admin/interface/list?pageNum=' + ${pageNum}"
+                           th:text="${pageNum + 1}" th:if="${pageNum eq interfaces.pageable.getPageNumber()}"
+                           th:style="'font-weight:bold;background: #6faed9;'"></a>
+                    </li>
+                    <!-- 下一页 -->
+                    <li th:if="${interfaces.hasNext()}">
+                        <a th:href="'/admin/interface/list?pageNum=' + ${interfaces.nextPageable().getPageNumber()}"
+                           th:text="下一页"></a>
+                    </li>
+                    <!-- 尾页 -->
+                    <li>
+                        <a th:href="'admin/interface/list?pageNum=' + ${interfaces.getTotalPages() - 1}">尾页</a>
+                    </li>
+                </ul>
+            </div>
+            <!--  分页控件结束 -->
+</div>
+</section>
+ <!-- footer -->
+		  <div class="footer">
+			<div class="wthree-copyright">
+			  <p>Copyright &copy; 2020.Company name All rights reserved.</p>
+			</div>
+		  </div>
+  <!-- / footer -->
+</section>
+
+<!--main content end-->
+</section>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">新增接口</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body" >
+
+                <form id="interfaceForm" action="##" method="post">
+                    <div class="form-group">
+                        <label for="interfaceName">接口名</label>
+                        <label id="interfaceNameLabel"></label>
+                        <input type="text" class="form-control" id="interfaceName" name="interfaceName" placeholder="接口名">
+                    </div>
+                    <div class="form-group">
+                        <label>所属项目</label>
+                        <select class="form-control" name="projectId" id="projectId">
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>提交类型</label>
+                        <select class="form-control" name="methodType" id="methodType">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                            <option value="PATCH">PATCH</option>
+                            <option value="OPTIONS">OPTIONS</option>
+                            <option value="HEAD">HEAD</option>
+                            <option value="TRACE">TRACE</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>接口类型</label>
+                        <select class="form-control" name="interfaceType" id="interfaceType">
+                            <option value="HTTP">HTTP</option>
+                            <option value="DUBBO">DUBBO</option>
+                            <option value="SPRING_CLOUD">SPRING_CLOUD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="applicationName">服务名</label>
+                        <label id="applicationNameLabel"></label>
+                        <input type="text" class="form-control" id="applicationName" name="applicationName" placeholder="服务名">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interfaceClass">接口类</label>
+                        <label id="interfaceClassLabel"></label>
+                        <input type="text" class="form-control" id="interfaceClass" name="interfaceClass" placeholder="接口类">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registryAddress">注册中心地址</label>
+                        <label id="registryAddressLabel"></label>
+                        <input type="text" class="form-control" id="registryAddress" name="registryAddress" placeholder="注册中心地址">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="methodName">方法名</label>
+                        <label id="methodNameLabel"></label>
+                        <input type="text" class="form-control" id="methodName" name="methodName" placeholder="方法名">
+                    </div>
+                    <div class="form-group">
+                        <label for="interfaceVersion">接口版本号</label>
+                        <label id="interfaceVersionLabel"></label>
+                        <input type="text" class="form-control" id="interfaceVersion" name="interfaceVersion" placeholder="接口版本号">
+                    </div>
+
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_submit" th:onclick="add()" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script th:src="@{/static/js/bootstrap.js}"></script>
+<script th:src="@{static/js/jquery.dcjqaccordion.2.7.js}"></script>
+<script th:src="@{static/js/scripts.js}"></script>
+<script th:src="@{static/js/jquery.slimscroll.js}"></script>
+<script th:src="@{static/js/jquery.nicescroll.js}"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" th:src="@{static/js/flot-chart/excanvas.min.js}"></script><![endif]-->
+<script th:src="@{static/js/jquery.scrollTo.js}"></script>
+<script th:src="@{static/js/jquery.serializejson.min.js}"></script>
+
+    <script>
+        function toAdd() {
+            $.ajax({
+                url:"/admin/interface/toAdd/",
+                type:"GET",
+                success:function(result){
+                    if(result.event == 0){
+                        $("#myModalLabel").text("新增接口");
+                        $('#myModal').modal();
+
+                        var projectList = result.data.projects;
+                        var projectSelect = "<option value='0'>——请选择项目——</option>";
+                        for(var i = 0; i < projectList.length; i++){
+                            projectSelect += ("<option value = '"+projectList[i].id+"'>"+projectList[i].projectName+"</option>");
+                        }
+                        $("#projectId").empty();
+                        $("#projectId").append(projectSelect);
+                    } else {
+                        toastr.error(result.message);
+                    }
+                }
+            });
+        }
+
+        function add(){
+            // var auditStatus = $("#auditStatus").val();
+            // if(auditStatus == ''){
+            //     toastr.error("请选择审核状态");
+            //     return;
+            // }
+            $.ajax({
+                url:"/admin/interface/add",
+                type:"POST",
+                dataType: "json",
+                data: JSON.stringify($("#interfaceForm").serializeJSON()),
+                contentType: 'application/json',
+                success:function(result){
+                    if(result.event == 0){
+                        toastr.success(result.message,"提示",{
+                            onHidden: function (){
+                                location.href="/admin/interface/list";
+                            }
+                        });
+
+                    } else {
+                        toastr.error(result.message);
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
