@@ -1,7 +1,9 @@
 package com.czn.testplatform.service.impl;
 
 import com.czn.testplatform.entity.Interface;
+import com.czn.testplatform.entity.Project;
 import com.czn.testplatform.repository.InterfaceRepository;
+import com.czn.testplatform.repository.ProjectRepository;
 import com.czn.testplatform.service.InterfaceService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +30,8 @@ public class InterfaceServiceImpl implements InterfaceService {
 
     @Autowired
     private InterfaceRepository interfaceRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Override
     @Transactional
@@ -43,7 +47,12 @@ public class InterfaceServiceImpl implements InterfaceService {
     @Override
     public Interface getById(Long id) {
         Optional<Interface> optional = interfaceRepository.findById(id);
-        return optional.orElse(null);
+        Interface anInterface = optional.orElse(null);
+        if(anInterface!=null){
+            Optional<Project> project = projectRepository.findById(anInterface.getProjectId());
+            project.ifPresent(value -> anInterface.setProjectName(value.getProjectName()));
+        }
+        return anInterface;
     }
 
     @Override

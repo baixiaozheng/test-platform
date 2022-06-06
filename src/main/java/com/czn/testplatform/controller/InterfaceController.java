@@ -26,7 +26,7 @@ public class InterfaceController {
     private ProjectService projectService;
 
     @RequestMapping(value = "list",method = RequestMethod.GET)
-    public ModelAndView waitingAuditList(@RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "2") int pageSize) {
+    public ModelAndView waitingAuditList(@RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "5") int pageSize) {
         ModelAndView modelAndView = new ModelAndView("interface/list");
         Page<Interface> interfaces = interfaceService.list(new Interface(), pageNum, pageSize);
         modelAndView.addObject("interfaces", interfaces);
@@ -49,9 +49,12 @@ public class InterfaceController {
         return ResultData.success();
     }
 
-    @RequestMapping("toExecute")
-    public ResultData toExecute(Long interfaceId){
-        return ResultData.success();
+    @RequestMapping(value = "toExecute",method = RequestMethod.GET)
+    public ModelAndView toExecute(@RequestParam Long id){
+        ModelAndView modelAndView = new ModelAndView("interface/execute");
+        Interface iface = interfaceService.getById(id);
+        modelAndView.addObject("iface", iface);
+        return modelAndView;
     }
 
 }

@@ -87,6 +87,12 @@ public class Interface implements Serializable {
     @Column(name = "param_type")
     private ParamType paramType;
 
+    /**
+     * 参数
+     */
+    @Column(name = "param",columnDefinition="MEDIUMTEXT")
+    private String param;
+
     @Column(name = "create_time")
     @CreationTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -96,4 +102,7 @@ public class Interface implements Serializable {
     @UpdateTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
+
+    @Transient
+    private String projectName;
 }

@@ -300,9 +300,9 @@
             <th data-breakpoints="xs">ID</th>
             <th>接口名</th>
             <th>提交类型</th>
-            <th data-breakpoints="xs">接口类型</th>
-           
-            <th data-breakpoints="xs sm md" data-title="DOB">方法名</th>
+            <th>接口类型</th>
+            <th>方法名</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
@@ -312,8 +312,10 @@
             <td th:text="${iface.interfaceName}"></td>
             <td th:text="${iface.methodType}"></td>
             <td th:text="${iface.interfaceType}"></td>
+            <td th:text="${iface.methodName}"></td>
             <td>
-                <input type="button" class="btn btn-info" th:onclick="|getAudit(${iface.id})|" th:value="审核">
+                <input type="button" class="btn btn-info" th:onclick="|toExecute(${iface.id})|" th:value="去执行">
+                <input type="button" class="btn btn-info" th:onclick="|toEdit(${iface.id})|" th:value="编辑">
             </td>
         </tr>
         </tbody>
@@ -419,13 +421,13 @@
                     <div class="form-group">
                         <label for="interfaceClass">接口类</label>
                         <label id="interfaceClassLabel"></label>
-                        <input type="text" class="form-control" id="interfaceClass" name="interfaceClass" placeholder="接口类">
+                        <input type="text" class="form-control" id="interfaceClass" name="interfaceClass" placeholder="接口类，全限定类名">
                     </div>
 
                     <div class="form-group">
                         <label for="registryAddress">注册中心地址</label>
                         <label id="registryAddressLabel"></label>
-                        <input type="text" class="form-control" id="registryAddress" name="registryAddress" placeholder="注册中心地址">
+                        <input type="text" class="form-control" id="registryAddress" name="registryAddress" placeholder="注册中心地址，dubbo的zookeeper地址或springCloud的接口服务地址">
                     </div>
 
                     <div class="form-group">
@@ -436,20 +438,19 @@
                     <div class="form-group">
                         <label for="interfaceVersion">接口版本号</label>
                         <label id="interfaceVersionLabel"></label>
-                        <input type="text" class="form-control" id="interfaceVersion" name="interfaceVersion" placeholder="接口版本号">
+                        <input type="text" class="form-control" id="interfaceVersion" name="interfaceVersion" placeholder="接口版本号，主要dubbo接口使用，如1.0.0">
                     </div>
                     <div class="form-group">
-                        <label for="paramName">参数名</label>
-                        <label id="paramNameLabel"></label>
-                        <input type="text" class="form-control" id="paramName" name="paramName" placeholder="参数名">
-
-                        <label for="paramValue">参数值</label>
-                        <label id="paramValueLabel"></label>
-                        <input type="text" class="form-control" id="paramValue" name="paramValue" placeholder="参数值"><i class="icon-minus-sign" onclick="removesome(event)"></i>
+                        <label>参数类型</label>
+                        <select class="form-control" name="paramType" id="paramType">
+                            <option value="QUERY_PARAM">QUERY_PARAM</option>
+                            <option value="BODY_PARAM">BODY_PARAM</option>
+                        </select>
                     </div>
-
-                    <div class="type_add_new" id="type_add_new" >
-                        <p><i class="icon-plus-sign"></i> 增加参数</p>
+                    <div class="form-group">
+                        <label for="param">参数值</label>
+                        <label id="paramLabel"></label>
+                        <textarea class="form-control" id="param" name="param" placeholder="参数值，url参数或json类型参数"></textarea>
                     </div>
 
                 </form>
@@ -534,26 +535,11 @@
                 }
             }
         }
-        $("#type_add_new").click(function () {
-            var html = '<div class="form-group">\n' +
-                '                        <label for="paramName">参数名</label>\n' +
-                '                        <label id="paramNameLabel"></label>\n' +
-                '                        <input type="text" class="form-control" id="paramName" name="paramName" placeholder="参数名">\n' +
-                '                        <label for="paramValue">参数值</label>\n' +
-                '                        <label id="paramValueLabel"></label>\n' +
-                '                        <input type="text" class="form-control" id="paramValue" name="paramValue" placeholder="参数值"><i class="icon-minus-sign" onclick="removesome(event)"></i>\n' +
-                '                    </div>';
-            $(".type_add_new").before(html);
-        });
-        //删除
-        function removesome(e) {
-            $(e.currentTarget).parents('.form-group').remove();
-            if(!($('div').is('.form-group'))){
-                $("#type_spec").css('display', 'none');
-                $("#type_add").css('display', 'block');
-                $(".dis_play").css('display', 'block');
-            }
+
+        function toExecute(id){
+            this.location.href = "/admin/interface/toExecute?id="+id;
         }
+
     </script>
 </body>
 </html>
