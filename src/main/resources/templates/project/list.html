@@ -384,7 +384,7 @@
                     </div>
                     <div class="form-group">
                         <label>所属项目</label>
-                        <select class="form-control" name="projectId" id="projectId" th:onchange="selectProject()">
+                        <select class="form-control" name="projectId" id="projectId">
 
                         </select>
                     </div>
@@ -438,19 +438,6 @@
                         <label id="interfaceVersionLabel"></label>
                         <input type="text" class="form-control" id="interfaceVersion" name="interfaceVersion" placeholder="接口版本号">
                     </div>
-                    <div class="form-group">
-                        <label for="paramName">参数名</label>
-                        <label id="paramNameLabel"></label>
-                        <input type="text" class="form-control" id="paramName" name="paramName" placeholder="参数名">
-
-                        <label for="paramValue">参数值</label>
-                        <label id="paramValueLabel"></label>
-                        <input type="text" class="form-control" id="paramValue" name="paramValue" placeholder="参数值"><i class="icon-minus-sign" onclick="removesome(event)"></i>
-                    </div>
-
-                    <div class="type_add_new" id="type_add_new" >
-                        <p><i class="icon-plus-sign"></i> 增加参数</p>
-                    </div>
 
                 </form>
                 <div class="modal-footer">
@@ -471,7 +458,6 @@
 <script th:src="@{static/js/jquery.serializejson.min.js}"></script>
 
     <script>
-        var pList;
         function toAdd() {
             $.ajax({
                 url:"/admin/interface/toAdd/",
@@ -482,7 +468,6 @@
                         $('#myModal').modal();
 
                         var projectList = result.data.projects;
-                        pList = projectList;
                         var projectSelect = "<option value='0'>——请选择项目——</option>";
                         for(var i = 0; i < projectList.length; i++){
                             projectSelect += ("<option value = '"+projectList[i].id+"'>"+projectList[i].projectName+"</option>");
@@ -523,37 +508,6 @@
             });
         }
 
-        function selectProject(){
-
-            var id = $("#projectId").val();
-            for(var i = 0; i < pList.length; i++){
-                if(id == pList[i].id){
-                    if($("#registryAddress").val()==null||$("#registryAddress").val()==''){
-                        $("#registryAddress").val(pList[i].registryAddress);
-                    }
-                }
-            }
-        }
-        $("#type_add_new").click(function () {
-            var html = '<div class="form-group">\n' +
-                '                        <label for="paramName">参数名</label>\n' +
-                '                        <label id="paramNameLabel"></label>\n' +
-                '                        <input type="text" class="form-control" id="paramName" name="paramName" placeholder="参数名">\n' +
-                '                        <label for="paramValue">参数值</label>\n' +
-                '                        <label id="paramValueLabel"></label>\n' +
-                '                        <input type="text" class="form-control" id="paramValue" name="paramValue" placeholder="参数值"><i class="icon-minus-sign" onclick="removesome(event)"></i>\n' +
-                '                    </div>';
-            $(".type_add_new").before(html);
-        });
-        //删除
-        function removesome(e) {
-            $(e.currentTarget).parents('.form-group').remove();
-            if(!($('div').is('.form-group'))){
-                $("#type_spec").css('display', 'none');
-                $("#type_add").css('display', 'block');
-                $(".dis_play").css('display', 'block');
-            }
-        }
     </script>
 </body>
 </html>

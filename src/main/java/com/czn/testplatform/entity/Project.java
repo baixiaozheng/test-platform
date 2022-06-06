@@ -32,8 +32,8 @@ public class Project implements Serializable {
     @Column(name = "project_name")
     private String projectName;
 
-    @Column(name = "base_url")
-    private String baseUrl;
+    @Column(name = "registry_address")
+    private String registryAddress;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "interface_type")
