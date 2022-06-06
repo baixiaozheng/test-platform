@@ -35,8 +35,9 @@ public class SpringCloudGenericServiceImpl implements SpringCloudGenericService 
     private InterfaceRepository interfaceRepository;
 
     @Override
-    public void execute(Long interfaceId, Map<String, Object> params) {
+    public String execute(Long interfaceId, Map<String, Object> params) {
         Optional<Interface> optionalInterface = interfaceRepository.findById(interfaceId);
+        Object result=null;
         if (optionalInterface.isPresent()) {
             Interface iface = optionalInterface.get();
 
@@ -51,11 +52,12 @@ public class SpringCloudGenericServiceImpl implements SpringCloudGenericService 
 
             if(ParamType.BODY_PARAM.equals(iface.getParamType())){
                 Object object = JSONObject.parseObject(JSONObject.toJSONString(params));
-                callbackAPI.callback(URI.create(iface.getRegistryAddress()), iface.getApplicationName()+"/"+iface.getMethodName(), params, object);
+                result = callbackAPI.callback(URI.create(iface.getRegistryAddress()), iface.getApplicationName() + "/" + iface.getMethodName(), params, object);
             } else {
-                callbackAPI.callback(URI.create(iface.getRegistryAddress()), iface.getApplicationName()+"/"+iface.getMethodName(), params);
+                result = callbackAPI.callback(URI.create(iface.getRegistryAddress()), iface.getApplicationName()+"/"+iface.getMethodName(), params);
             }
         }
+        return JSONObject.toJSONString(result);
     }
 
 

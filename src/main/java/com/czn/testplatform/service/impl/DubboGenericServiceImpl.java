@@ -21,7 +21,7 @@ public class DubboGenericServiceImpl implements DubboGenericService {
     @Autowired
     private InterfaceRepository interfaceRepository;
     @Override
-    public void execute(Long interfaceId, Map<String, Object> params) {
+    public String execute(Long interfaceId, Map<String, Object> params) {
         Optional<Interface> optionalInterface = interfaceRepository.findById(interfaceId);
         if(optionalInterface.isPresent()){
             Interface iface = optionalInterface.get();
@@ -42,7 +42,6 @@ public class DubboGenericServiceImpl implements DubboGenericService {
             // 用org.apache.dubbo.rpc.service.GenericService可以替代所有接口引用
             GenericService genericService = reference.get();
 
-
             String[] paramTypes = null;
             Object[] paramValues = null;
             if(!CollectionUtils.isEmpty(params)){
@@ -56,9 +55,11 @@ public class DubboGenericServiceImpl implements DubboGenericService {
                 }
             }
             Object result = genericService.$invoke(iface.getMethodName(), paramTypes, paramValues);
-            System.out.println(JSONObject.toJSONString(result));
             reference.destroy();//这里一定要用，否则dubbo会一直连接，没几十次调用系统就会挂掉
-
+            return JSONObject.toJSONString(result);
+        } else {
+            return "";
         }
+
     }
 }

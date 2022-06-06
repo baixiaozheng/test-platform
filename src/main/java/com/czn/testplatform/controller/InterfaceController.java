@@ -3,6 +3,7 @@ package com.czn.testplatform.controller;
 import com.czn.testplatform.common.vo.ResultData;
 import com.czn.testplatform.entity.Interface;
 import com.czn.testplatform.entity.Project;
+import com.czn.testplatform.service.ExecuteService;
 import com.czn.testplatform.service.InterfaceService;
 import com.czn.testplatform.service.ProjectService;
 import com.czn.testplatform.vo.ToAddInterfaceVo;
@@ -24,7 +25,8 @@ public class InterfaceController {
     private InterfaceService interfaceService;
     @Autowired
     private ProjectService projectService;
-
+    @Autowired
+    private ExecuteService executeService;
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public ModelAndView waitingAuditList(@RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "5") int pageSize) {
         ModelAndView modelAndView = new ModelAndView("interface/list");
@@ -55,6 +57,14 @@ public class InterfaceController {
         Interface iface = interfaceService.getById(id);
         modelAndView.addObject("iface", iface);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "execute",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultData execute(@RequestParam Long id){
+        ResultData executeResult = executeService.execute(id);
+        return executeResult;
+
     }
 
 }

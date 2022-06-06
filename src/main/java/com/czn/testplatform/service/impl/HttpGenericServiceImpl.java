@@ -18,7 +18,7 @@ public class HttpGenericServiceImpl implements HttpGenericService {
     @Autowired
     private InterfaceRepository interfaceRepository;
     @Override
-    public void execute(Long interfaceId, Map<String, Object> params) {
+    public String execute(Long interfaceId, Map<String, Object> params) {
         String result = "";
         Optional<Interface> optionalInterface = interfaceRepository.findById(interfaceId);
         if (optionalInterface.isPresent()) {
@@ -36,7 +36,7 @@ public class HttpGenericServiceImpl implements HttpGenericService {
                 result = HttpClientUtils.sendHttpPostJson(url, JSONObject.toJSONString(params));
             }
         }
-        System.out.println(result);
+        return result;
     }
 
     public static String getUrlParamsByMap(Map<String, Object> map) {
