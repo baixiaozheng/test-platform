@@ -3,15 +3,16 @@ package com.czn.testplatform.service.impl;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
+import com.alibaba.dubbo.config.utils.ReferenceConfigCache;
 import com.alibaba.dubbo.rpc.service.GenericService;
 import com.alibaba.fastjson.JSONObject;
 import com.czn.testplatform.entity.Interface;
 import com.czn.testplatform.repository.InterfaceRepository;
 import com.czn.testplatform.service.DubboGenericService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.Map;
 import java.util.Optional;
@@ -40,7 +41,9 @@ public class DubboGenericServiceImpl implements DubboGenericService {
             reference.setGeneric(true);
 
             // 用org.apache.dubbo.rpc.service.GenericService可以替代所有接口引用
-            GenericService genericService = reference.get();
+//            GenericService genericService = reference.get();
+            ReferenceConfigCache cache = ReferenceConfigCache.getCache();
+            GenericService genericService = cache.get(reference);
 
             String[] paramTypes = null;
             Object[] paramValues = null;
